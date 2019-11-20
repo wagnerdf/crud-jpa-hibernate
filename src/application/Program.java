@@ -3,6 +3,7 @@ package application;
 
 import java.util.Scanner;
 
+import entities.Cliente;
 import entities.OperacoesCrud;
 
 
@@ -13,8 +14,12 @@ public class Program {
 		Scanner sc = new Scanner(System.in);
 		OperacoesCrud ocrud = new OperacoesCrud();
 		
-
+		Long consulta = 0L;
 		int opcao = 0;
+		String nome;
+		Integer idade;
+		String sexo;
+		String profissao;
 		do {
 			System.out.println("-----------Sistema de Gestão de Clientes----------");
 			System.out.println("--------------------------------------------------");
@@ -26,19 +31,35 @@ public class Program {
 			System.out.println("--( 4 ) - Editar cliente -------------------------");
 			System.out.println("--------------------------------------------------");
 			System.out.println("--( 5 ) - Sair do sistema ------------------------");
+			System.out.println("--------------------------------------------------");
+			System.out.print("--Digite uma opção: ");
 			
 			opcao = sc.nextInt();
 			
+			
 			switch (opcao) {
 			case 1:
-				ocrud.create();
+				sc.nextLine();
+				System.out.print("Informe o NOME do cliente: ");
+				nome = sc.nextLine();
+				System.out.print("Informe a IDADE do cliente: ");
+				idade = sc.nextInt();
+				sc.nextLine();
+				System.out.print("Informe a Profissão do cliente: ");
+				profissao = sc.nextLine();
+				System.out.print("Informe o SEXO [M] Masculino e [F] Feminino: ");
+				sexo = sc.nextLine();
+				ocrud.create(nome, idade, profissao, sexo);
 				System.out.println("Cliente Criado");
 				break;
 			case 2:
 				System.out.println("Cliente Deletado");
 				break;
 			case 3:
-				System.out.println("Cliente Consultado");
+				System.out.print("Informe o ID do cliente: ");
+				consulta = sc.nextLong();
+				ocrud.read(consulta);
+				System.out.println("Consulta Finalizada");
 				break;
 			case 4:
 				System.out.println("Cliente Editado");
