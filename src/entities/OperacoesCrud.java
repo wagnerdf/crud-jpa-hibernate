@@ -72,6 +72,36 @@ public class OperacoesCrud {
 		}
 	}
 	
+	public void update(Long id) {
+		cliente = em.find(Cliente.class, id);
+		
+		if(cliente != null) {
+			System.out.println("Nome: "+cliente.getNome());
+			System.out.println("Idade: "+cliente.getIdade());
+			System.out.println("Profissão: "+cliente.getProfissao());
+			System.out.println("Sexo: "+cliente.getSexo());
+			
+			System.out.print("Você deseja editar a profissão cliente? [s]sim ou [n]não: ");
+			char editar = sc2.next().charAt(0);
+			
+			if (editar == 's') {
+					sc2.nextLine();
+					System.out.println("Informe a nova profissão: ");				
+					String p = sc2.nextLine();
+				
+					em.getTransaction().begin();
+					cliente.setProfissao(p);					
+					em.getTransaction().commit();
+					System.out.println("Profissão alterada");
+			}else {
+				System.out.println("Edição cancelada");
+			}
+		}else {
+			System.out.println("Cliente não existe na base de dados");
+		}
+		
+	}
+	
 	public void closeEntityManager() {
 		em.close();
 		

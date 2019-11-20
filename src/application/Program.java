@@ -65,7 +65,10 @@ public class Program {
 				System.out.println("Consulta Finalizada");
 				break;
 			case 4:
-				System.out.println("Cliente Editado");
+				System.out.print("Informe o ID do cliente: ");
+				id = sc.nextLong();
+				ocrud.update(id);
+				System.out.println("Retorno do modo edição");
 				break;
 			case 5:
 				System.out.println("Opção escolhida - Sair do sistema");
