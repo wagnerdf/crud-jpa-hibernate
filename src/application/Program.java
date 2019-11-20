@@ -3,7 +3,7 @@ package application;
 
 import java.util.Scanner;
 
-import entities.Cliente;
+//import entities.Cliente;
 import entities.OperacoesCrud;
 
 
@@ -15,6 +15,7 @@ public class Program {
 		OperacoesCrud ocrud = new OperacoesCrud();
 		
 		Long consulta = 0L;
+		Long id = 0L;
 		int opcao = 0;
 		String nome;
 		Integer idade;
@@ -53,7 +54,9 @@ public class Program {
 				System.out.println("Cliente Criado");
 				break;
 			case 2:
-				System.out.println("Cliente Deletado");
+				System.out.print("Informe o ID do cliente: ");
+				id = sc.nextLong();
+				ocrud.delete(id);
 				break;
 			case 3:
 				System.out.print("Informe o ID do cliente: ");
@@ -74,6 +77,7 @@ public class Program {
 		} while (opcao != 5);
 		
 		ocrud.closeEntityManager();
+		
 		sc.close();
 		System.out.println("Programa finalizado");
 	}
